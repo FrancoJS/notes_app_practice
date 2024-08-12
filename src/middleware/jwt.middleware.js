@@ -15,7 +15,6 @@ export const verifyToken = (req, res, next) => {
 		req.email = email;
 		next();
 	} catch (error) {
-		console.log(token);
 		res.status(400).json({ ok: false, msg: "No estas autorizado para ver esta pagina, Token invalido" });
 	}
 };

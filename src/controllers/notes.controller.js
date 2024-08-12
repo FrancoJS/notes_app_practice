@@ -6,7 +6,6 @@ const createNote = async (req, res) => {
 		if (!title || !description) {
 			return res.status(400).json({ ok: false, msg: "Campos requeridos vacios: titulo o descripcion" });
 		}
-		console.log(req.u_id);
 		const newNote = await NotesModel.createNote(title, description, req.u_id);
 		res.status(200).json({ ok: true, msg: newNote });
 	} catch (error) {
@@ -15,6 +14,45 @@ const createNote = async (req, res) => {
 	}
 };
 
+const getAllNotes = async (req, res) => {
+	try {
+		const notes = await NotesModel.getAllNotes(req.u_id);
+		if (notes.length < 1) return res.status(404).json({ ok: false, msg: "No existen notas para mostrar" });
+		res.status(200).json({ ok: true, msg: notes });
+	} catch (error) {
+		console.log(error);
+		res.status(400).json({ ok: false });
+	}
+};
+
+const updateNote = async (req, res) => {
+	try {
+		const { title, description, n_id } = req?.body;
+		if (!title || !description || !n_id)
+			return res.status(400).json({ ok: false, msg: "Todos los campos son obligatorios" });
+		const updatedNote = await NotesModel.updateNote(title, description, n_id, req.u_id);
+		res.status(200).json({ ok: true, msg: updatedNote });
+	} catch (error) {
+		console.log(error);
+		res.status(400).json({ ok: false });
+	}
+};
+
+const deleteNote = async (req, res) => {
+	try {
+		const { n_id } = req?.body;
+		if (!n_id) return res.status(400).json({ ok: false, msg: "Es necesario el n_id" });
+		const deletedNote = await NotesModel.deleteNote(n_id, req.u_id);
+		res.status(200).json({ ok: true, msg: deletedNote });
+	} catch (error) {
+		console.log(error);
+		res.status(400).json({ ok: false });
+	}
+};
+
 export const NotesController = {
 	createNote,
+	getAllNotes,
+	updateNote,
+	deleteNote,
 };
