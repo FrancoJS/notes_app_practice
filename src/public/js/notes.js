@@ -27,13 +27,18 @@ const updateNotes = async (noteArr) => {
 				<input type="text" value="${title}" name="title"/>
 				<input type="text" value="${description}" name="description"/>
 				<input class="display-none" value="${n_id}" name="n_id"/>
-				<button id="button-${n_id}" class="form-button" type="submit">ACTUALIZAR</button>
+				<div class="container-buttons">
+					<button id="delete-${n_id}"class="material-symbols-outlined">delete</button>
+					<button id="button-${n_id}" class="material-symbols-outlined form-button" type="submit">refresh</button>
+				</div>
 			</form>
 		`;
 	});
 
 	noteArr.forEach(({ n_id }) => {
 		const form = document.getElementById(`formNote-${n_id}`);
+		const deleteBtn = document.getElementById(`delete-${n_id}`);
+
 		form.addEventListener("submit", async (e) => {
 			e.preventDefault();
 			const title = e.target.title.value;
@@ -57,6 +62,19 @@ const updateNotes = async (noteArr) => {
 					const { data } = response;
 					alert(data.msg);
 				}
+			}
+		});
+
+		deleteBtn.addEventListener("click", async (e) => {
+			try {
+				const { data } = await axios.delete(`/api/notes/delete/${n_id}`, {
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				});
+				window.location.reload();
+			} catch (error) {
+				console.log(error);
 			}
 		});
 	});

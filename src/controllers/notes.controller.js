@@ -40,7 +40,7 @@ const updateNote = async (req, res) => {
 
 const deleteNote = async (req, res) => {
 	try {
-		const { n_id } = req?.body;
+		const { n_id } = req?.params;
 		if (!n_id) return res.status(400).json({ ok: false, msg: "Es necesario el n_id" });
 		const deletedNote = await NotesModel.deleteNote(n_id, req.u_id);
 		res.status(200).json({ ok: true, msg: deletedNote });
