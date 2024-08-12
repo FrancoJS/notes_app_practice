@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="/styles.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- FONTS -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+			rel="stylesheet"
+		/>
+		<title>App notes</title>
+	</head>
+	<body>
+		<div class="container">
+			<%- include('partials/navbar') %>
+			<div class="container-forms">
+				<form id="loginForm">
+					<h2>Iniciar Sesion</h2>
+					<input type="email" placeholder="Email" name="email" />
+					<span class="error-login"></span>
+					<input type="password" placeholder="Contraseña" name="password" />
+					<span class="error-login"></span>
+					<button type="submit" id="buttonLogin">INICIAR SESION</button>
+				</form>
+				<hr />
+				<form id="registerForm">
+					<h2>Crear cuenta</h2>
+					<input type="text" placeholder="Nombre" name="name" />
+					<span class="error-register"></span>
+					<input type="text" placeholder="Apellido" name="last_name" />
+					<span class="error-register"></span>
+					<input type="email" placeholder="Email" name="email" />
+					<span class="error-register"></span>
+					<input type="password" placeholder="Contraseña" name="password" />
+					<span class="error-register"></span>
+					<button type="submit">REGISTRARSE</button>
+				</form>
+			</div>
+			<%- include('partials/footer') %>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script src="/js/forms.js" type="module"></script>
+	</body>
+</html>

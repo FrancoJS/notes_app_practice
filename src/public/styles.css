@@ -1,0 +1,79 @@
+body {
+	background-color: #ccc;
+	font-family: "Open Sans", sans-serif;
+	font-style: italic;
+	font-variation-settings: "wdth" 100;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	min-height: 100dvh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+}
+
+header {
+	width: 100%;
+	background-color: #000;
+	color: #fff;
+}
+
+.navbar-ul {
+	display: flex;
+	list-style: none;
+	justify-content: space-evenly;
+}
+
+.container-forms {
+	display: flex;
+	justify-content: space-evenly;
+	height: 600px;
+	width: 50%;
+	min-width: 600px;
+	margin: 50px auto;
+	background-color: aliceblue;
+	padding: 30px;
+}
+
+.container-forms form {
+	display: flex;
+	flex-direction: column;
+	width: 45%;
+}
+
+.container-forms form h2 {
+	text-align: center;
+	font-size: 28px;
+}
+
+.container-forms form input {
+	font-family: "Open Sans", sans-serif;
+	margin-top: 30px;
+	padding: 10px 10px;
+	font-size: 15px;
+}
+
+.container-forms form button {
+	padding: 10px 10px;
+	margin-top: 30px;
+	background-color: #000;
+	color: #fff;
+	cursor: pointer;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 700;
+	border: none;
+}
+
+.error-register,
+.error-login {
+	color: red;
+	font-size: 12px;
+}
+
+footer {
+	color: #fff;
+	background-color: #000;
+	text-align: center;
+}
