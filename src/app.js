@@ -2,6 +2,7 @@ import express from "express";
 import "dotenv/config";
 import userRouter from "./routes/user.route.js";
 import viewRouter from "./routes/views.route.js";
+import notesRouter from "./routes/notes.route.js";
 import path from "path";
 
 const app = express();
@@ -20,6 +21,7 @@ app.set("views", "src/views");
 //Rutas
 app.use("/", viewRouter);
 app.use("/api/notes/users", userRouter);
+app.use("/api/notes", notesRouter);
 
 const PORT = process.env.PORT | 3000;
 
