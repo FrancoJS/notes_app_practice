@@ -17,9 +17,13 @@
 		<div class="container">
 			<%- include('partials/navbar') %>
 			<main>
-				<h1>Notas</h1>
+				<div id="container-notes" class="container-notes">
+					<h1>Notas</h1>
+				</div>
 			</main>
 			<%- include('partials/footer') %>
 		</div>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script src="/js/notes.js" type="module"></script>
 	</body>
 </html>

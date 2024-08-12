@@ -5,7 +5,7 @@ import { NotesController } from "../controllers/notes.controller.js";
 const router = Router();
 
 router.post("/create", verifyToken, NotesController.createNote);
-router.put("/update", verifyToken, NotesController.updateNote);
+router.put("/update/:n_id", verifyToken, NotesController.updateNote);
 router.delete("/delete", verifyToken, NotesController.deleteNote);
 router.get("/", verifyToken, NotesController.getAllNotes);
 

@@ -18,6 +18,7 @@ const getAllNotes = async (u_id) => {
 		text: `
 			SELECT * FROM NOTES 
 			WHERE U_ID = $1
+			ORDER BY N_ID ASC
 		`,
 		values: [u_id],
 	};

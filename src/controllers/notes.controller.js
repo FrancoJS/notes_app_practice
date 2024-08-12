@@ -27,9 +27,9 @@ const getAllNotes = async (req, res) => {
 
 const updateNote = async (req, res) => {
 	try {
-		const { title, description, n_id } = req?.body;
-		if (!title || !description || !n_id)
-			return res.status(400).json({ ok: false, msg: "Todos los campos son obligatorios" });
+		const { title, description } = req?.body;
+		const { n_id } = req?.params;
+		if (!title || !description) return res.status(400).json({ ok: false, msg: "Todos los campos son obligatorios" });
 		const updatedNote = await NotesModel.updateNote(title, description, n_id, req.u_id);
 		res.status(200).json({ ok: true, msg: updatedNote });
 	} catch (error) {
