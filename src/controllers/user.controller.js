@@ -2,6 +2,7 @@ import { createToken } from "../middleware/jwt.middleware.js";
 import { UserModel } from "../models/user.model.js";
 import { passwordService } from "../services/password.service.js";
 
+//CREAR USUARIO
 const createUser = async (req, res) => {
 	try {
 		const { name, last_name, email, password } = req?.body;
@@ -13,14 +14,14 @@ const createUser = async (req, res) => {
 
 		const hashedPassword = await passwordService.hashPassword(password);
 		const newUser = await UserModel.createUser(name, last_name, email, hashedPassword);
-		const token = createToken(newUser.email, newUser.u_id);
+		const token = createToken(newUser.email, newUser.u_id, newUser.name);
 		res.status(200).json({ ok: true, token });
 	} catch (error) {
 		res.status(400).json({ ok: false });
-		console.log(error);
 	}
 };
 
+//ENCONTRAR A USUARIO POR EMAIL, YA QUE ES UNIQUE
 const findOneByEmail = async (req, res) => {
 	try {
 		const { email, password } = req?.body;
@@ -33,14 +34,14 @@ const findOneByEmail = async (req, res) => {
 		const isMatch = await passwordService.comparePassword(password, user.password);
 		if (!isMatch) return res.status(400).json({ ok: false, msg: "Invalid credentials" });
 
-		const token = createToken(user.email, user.u_id);
+		const token = createToken(user.email, user.u_id, user.name);
 		res.status(200).json({ ok: true, msg: user, token });
 	} catch (error) {
 		res.status(400).json({ ok: false });
-		console.log(error);
 	}
 };
 
+//CONTROLADOR QUE VA A SER LLAMADO EN LA RUTA
 export const UserController = {
 	createUser,
 	findOneByEmail,

@@ -20,12 +20,13 @@ registerForm.addEventListener("submit", async (e) => {
 	!emailRegex.test(email)
 		? (errorEmailR.textContent = "Debe ingresar un email valido")
 		: (errorEmailR.textContent = "");
+
 	if (name && last_name && email && password && password.length >= 8 && emailRegex.test(email)) {
 		try {
 			const { data } = await axios.post("/api/notes/users/register", { name, last_name, email, password });
 			const token = data.token;
 			localStorage.setItem("token", token);
-			// window.location.href = "/";
+			window.location.href = "/notes";
 		} catch ({ response }) {
 			const { data } = response;
 			if (!data.ok) {
@@ -34,7 +35,6 @@ registerForm.addEventListener("submit", async (e) => {
 				span.textContent = data.msg;
 				registerForm.appendChild(span);
 			}
-			console.log(data);
 		}
 	}
 });
@@ -59,6 +59,7 @@ loginForm.addEventListener("submit", async (e) => {
 			});
 			const token = data.token;
 			localStorage.setItem("token", token);
+			window.location.href = "/notes";
 		} catch ({ response }) {
 			const { data } = response;
 			if (!data.ok) {
@@ -67,7 +68,6 @@ loginForm.addEventListener("submit", async (e) => {
 				span.textContent = data.msg;
 				loginForm.appendChild(span);
 			}
-			console.log(data);
 		}
 	}
 });

@@ -1,30 +1,67 @@
+/* NORMALIZE */
 body {
-	background-color: #ccc;
-	font-family: "Open Sans", sans-serif;
-	font-style: italic;
-	font-variation-settings: "wdth" 100;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
 
+:root {
+	--notes-color: #f4d03f;
+	--background-color: #222;
+}
+
 .container {
+	font-family: "Roboto Mono", monospace;
 	min-height: 100dvh;
 	display: grid;
 	grid-template-rows: auto 1fr auto;
 }
 
+main {
+	background-color: var(--background-color);
+}
+
+/* BARRA DE NAVEGACION */
+
 header {
 	width: 100%;
 	background-color: #000;
-	color: #fff;
+}
+
+.disabled {
+	display: none;
+}
+
+.navbar {
+	display: flex;
+	width: 50%;
+	min-width: 500px;
+	align-items: center;
+	margin: 0 auto;
+	justify-content: space-between;
+}
+
+.navbar a {
+	text-decoration: none;
+	color: var(--notes-color);
+	font-size: 18px;
+}
+
+.navbar a:hover {
+	border-bottom: 1px solid var(--notes-color);
+}
+
+.navbar-icons span {
+	font-size: 30px;
 }
 
 .navbar-ul {
 	display: flex;
 	list-style: none;
-	justify-content: space-evenly;
 }
+/*  */
+
+/* FORMULARIOS */
 
 .container-forms {
 	display: flex;
@@ -72,58 +109,96 @@ header {
 	font-size: 12px;
 }
 
+/* NOTAS */
+
+.hi-user {
+	color: var(--notes-color);
+	width: 50%;
+	margin: 20px auto;
+	text-align: center;
+}
+
+.container-notes {
+	width: 50%;
+	min-width: 500px;
+	margin: 20px auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	grid-auto-rows: 300px;
+	row-gap: 20px;
+	column-gap: 20px;
+}
+
+.form-notes {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: var(--notes-color);
+	padding: 20px 20px;
+	border: 3px solid #000;
+}
+
+.form-notes input,
+.form-notes textarea {
+	font-family: "Roboto Mono", monospace;
+	background-color: var(--notes-color);
+	border: none;
+	outline: none;
+	border-bottom: 1px solid #000;
+	width: 100%;
+}
+
+.form-notes textarea {
+	resize: none;
+	padding-bottom: 70px;
+	margin-top: 20px;
+	font-size: 15px;
+}
+
+.form-notes input {
+	margin-top: 20px;
+	font-size: 18px;
+}
+
+.title-note {
+	font-weight: 800;
+}
+
+.date-note {
+	font-size: 14px;
+}
+
+.container-buttons {
+	display: flex;
+	justify-content: space-evenly;
+	/* margin-top: 20px; */
+}
+
+.notes-button {
+	cursor: pointer;
+	color: #000;
+	background-color: var(--notes-color);
+	border: none;
+	padding: 10px;
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+.notes-button:hover {
+	color: var(--notes-color);
+	background-color: #222;
+	border-radius: 100%;
+	transition: all 0.5s ease;
+}
+
+/* FOOTER */
 footer {
 	color: #fff;
 	background-color: #000;
 	text-align: center;
 }
 
+/* N_ID PARA ENCONTRARLO EN BASE DE DATOS */
 .display-none {
 	display: none;
-}
-
-.container-notes {
-	width: 60%;
-	margin: 50px auto;
-	text-align: center;
-}
-
-h1 {
-	text-align: center;
-}
-
-.form-notes {
-	display: flex;
-	text-align: center;
-	flex-direction: column;
-	margin: 20px auto;
-	width: 300px;
-	background-color: #fff;
-	padding: 50px;
-	border: 3px solid #000;
-}
-
-.form-notes input,
-.form-notes button {
-	margin-top: 20px;
-	padding: 10px;
-}
-.container-buttons {
-	display: flex;
-	justify-content: space-around;
-}
-
-button {
-	cursor: pointer;
-	color: #fff;
-	background-color: #000;
-	border: none;
-	width: 20%;
-}
-
-.add {
-	width: 50px;
-	height: 50px;
-	position: absolute;
-	right: 300px;
 }
