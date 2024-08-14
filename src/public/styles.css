@@ -28,10 +28,6 @@ header {
 	background-color: #000;
 }
 
-.disabled {
-	display: none;
-}
-
 .navbar {
 	display: flex;
 	width: 50%;
@@ -44,7 +40,9 @@ header {
 .navbar a {
 	text-decoration: none;
 	color: var(--notes-color);
-	font-size: 18px;
+	font-size: 16px;
+	display: flex;
+	align-items: center;
 }
 
 .navbar a:hover {
@@ -66,41 +64,63 @@ header {
 .container-forms {
 	display: flex;
 	justify-content: space-evenly;
-	height: 600px;
-	width: 50%;
+	width: 45%;
 	min-width: 600px;
 	margin: 50px auto;
-	background-color: aliceblue;
+	background-color: var(--notes-color);
 	padding: 30px;
+	border: 3px solid;
 }
 
 .container-forms form {
 	display: flex;
 	flex-direction: column;
 	width: 45%;
+	margin: 0 auto;
 }
 
 .container-forms form h2 {
 	text-align: center;
-	font-size: 28px;
+	font-size: 25px;
 }
 
 .container-forms form input {
-	font-family: "Open Sans", sans-serif;
+	font-family: "Roboto Mono", monospace;
 	margin-top: 30px;
 	padding: 10px 10px;
-	font-size: 15px;
+	font-size: 14px;
+	background-color: var(--notes-color);
+	border: none;
+	border-bottom: 1px solid #000;
+	outline: none;
+}
+
+.container-forms form input::placeholder {
+	color: #222;
 }
 
 .container-forms form button {
 	padding: 10px 10px;
 	margin-top: 30px;
 	background-color: #000;
-	color: #fff;
 	cursor: pointer;
-	font-family: "Open Sans", sans-serif;
+	font-family: "Roboto Mono", monospace;
 	font-weight: 700;
 	border: none;
+	color: var(--notes-color);
+	border: 1px solid #000;
+}
+
+hr {
+	background-color: #000;
+	border: none;
+	width: 1px;
+}
+
+.container-forms form button:hover {
+	background-color: var(--notes-color);
+	color: #000;
+	transition: all 0.3s ease;
 }
 
 .error-register,
@@ -148,6 +168,11 @@ header {
 	width: 100%;
 }
 
+.form-notes input::placeholder,
+.form-notes textarea::placeholder {
+	color: #444;
+}
+
 .form-notes textarea {
 	resize: none;
 	padding-bottom: 70px;
@@ -171,7 +196,6 @@ header {
 .container-buttons {
 	display: flex;
 	justify-content: space-evenly;
-	/* margin-top: 20px; */
 }
 
 .notes-button {
@@ -188,12 +212,42 @@ header {
 	color: var(--notes-color);
 	background-color: #222;
 	border-radius: 100%;
-	transition: all 0.5s ease;
+	transition: all 0.4s ease;
+}
+
+/* BOTON DE AÑADIR */
+.container-add-button {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.add-button {
+	cursor: pointer;
+	background-color: #222;
+	color: var(--notes-color);
+	border: none;
+	padding: 5px;
+	display: flex;
+	align-items: center;
+}
+
+.add-button:hover {
+	/* background-color: var(--notes-color); */
+	color: #f7f0d1;
+	/* transition: all 0.3s ease-in; */
+}
+
+.add-button p {
+	font-weight: 800;
+}
+
+.add-button span {
+	font-size: 40px;
 }
 
 /* FOOTER */
 footer {
-	color: #fff;
+	color: var(--notes-color);
 	background-color: #000;
 	text-align: center;
 }
@@ -201,4 +255,12 @@ footer {
 /* N_ID PARA ENCONTRARLO EN BASE DE DATOS */
 .display-none {
 	display: none;
+}
+
+/* INDEX.EJS */
+
+.principal-route {
+	width: 50%;
+	margin: 0 auto;
+	color: var(--notes-color);
 }

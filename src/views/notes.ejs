@@ -23,7 +23,29 @@
 			<%- include('partials/navbar') %>
 			<main>
 				<h1 id="hiUser" class="hi-user"></h1>
-				<div id="containerNotes" class="container-notes"></div>
+				<div class="container-add-button">
+					<button id="addButton" class="add-button">
+						<p>Agregar nota</p>
+						<span class="material-symbols-outlined"> add </span>
+					</button>
+				</div>
+				<div id="containerNotes" class="container-notes">
+					<form id="formAddNote" class="form-notes display-none">
+						<div class="container-inputs">
+							<span>Nota nueva:</span>
+							<input type="text" id="addNote" class="title-note" placeholder="Titulo..." name="title" />
+							<textarea name="description" placeholder="Descripcion..."></textarea>
+						</div>
+						<div class="container-buttons">
+							<button id="sendBtn" class="material-symbols-outlined notes-button" type="submit">
+								<span class="material-symbols-outlined">
+									<span class="material-symbols-outlined"> task_alt </span>
+								</span>
+							</button>
+							<button id="closeBtn" class="material-symbols-outlined notes-button">close</button>
+						</div>
+					</form>
+				</div>
 			</main>
 			<%- include('partials/footer') %>
 		</div>

@@ -21,7 +21,7 @@ const getAllNotes = async (req, res) => {
 	try {
 		const notes = await NotesModel.getAllNotes(req.u_id);
 		if (notes.length < 1) return res.status(404).json({ ok: false, msg: "No existen notas para mostrar" });
-		res.status(200).json({ ok: true, msg: notes, user: req.name });
+		res.status(200).json({ ok: true, msg: notes, username: req.name });
 	} catch (error) {
 		res.status(400).json({ ok: false });
 	}
