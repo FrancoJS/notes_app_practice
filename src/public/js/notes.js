@@ -49,6 +49,7 @@ addButton.addEventListener("click", (e) => {
 	closeBtn.addEventListener("click", () => {
 		formAddNote.classList.add("display-none");
 		send = false;
+		window.location.reload();
 	});
 
 	formAddNote.addEventListener("submit", async (e) => {
@@ -136,6 +137,7 @@ const updateOrDeleteNote = (noteArr) => {
 						}
 					);
 					alert("Nota actualizada");
+					window.location.reload();
 				} catch ({ response }) {
 					if (response) {
 						const { data } = response;
