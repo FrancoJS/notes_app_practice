@@ -1,1 +1,10 @@
-Proyecto para practicar api rest con node, si desea ocupar el proyecto reemplazar variables de entorno, clonar el repositorio y ejecutar npm install
+# Ocupar proyecto:
+
+Proyecto de practica api rest con node, si desea ocupar proyecto reemplazar variables de entorno y ejecutar
+```
+git clone URL_DE_ESTE_REPOSITORIO
+```
+
+```
+npm install
+```
