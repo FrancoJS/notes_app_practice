@@ -40,7 +40,7 @@ header {
 .navbar a {
 	text-decoration: none;
 	color: var(--notes-color);
-	font-size: 16px;
+	font-size: 14px;
 	display: flex;
 	align-items: center;
 }
@@ -143,7 +143,7 @@ hr {
 	min-width: 500px;
 	margin: 20px auto;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
 	grid-auto-rows: 300px;
 	row-gap: 20px;
 	column-gap: 20px;
@@ -263,4 +263,46 @@ footer {
 	width: 50%;
 	margin: 0 auto;
 	color: var(--notes-color);
+}
+.pagination {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.pagination-item {
+	list-style: none;
+	margin: 0 5px;
+}
+
+.pagination-button {
+	color: #000;
+	background-color: var(--notes-color);
+	font-family: "Roboto Mono", monospace;
+	padding: 10px 15px;
+	font-size: 16px;
+	font-weight: 800;
+	cursor: pointer;
+	border: 2px solid #000;
+}
+
+.active {
+	color: var(--notes-color);
+	background-color: #000;
+}
+
+.pagination-button:hover {
+	color: var(--notes-color);
+	background-color: #000;
+}
+
+.disabled {
+	background-color: #ccc;
+}
+
+.disabled:hover {
+	background-color: #ccc;
+	cursor: default;
+	opacity: 100%;
+	color: #000;
 }

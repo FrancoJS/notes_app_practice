@@ -19,24 +19,60 @@ logout.addEventListener("click", () => {
 });
 
 //OBTENER TODAS LAS NOTAS
-const getAllNotes = async () => {
+let limit = 9;
+let PAGE = 1;
+const getAllNotes = async (url = `/api/notes?limit=${limit}&page=${PAGE}`) => {
 	try {
-		const { data } = await axios.get("/api/notes", {
+		const { data } = await axios.get(url, {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
 		});
-		const { username } = data;
+		const { username, pagination } = data;
 		const noteArr = data.msg;
 		hiUser.textContent = `Hola, ${username}!`;
 		showNotes(noteArr);
 		updateOrDeleteNote(noteArr);
+		createPagination(pagination);
 	} catch ({ response }) {
 		if (response) {
 			const { data } = response;
 			alert(data.msg);
 		}
 	}
+};
+
+window.changePage = function (page) {
+	PAGE = page;
+	getAllNotes();
+};
+
+const pagination = document.getElementById("pagination");
+const createPagination = ({ totalPages, nextPage, prevPage, currentPage }) => {
+	if (totalPages <= 1) return;
+
+	pagination.innerHTML = "";
+	pagination.innerHTML += `<li class="pagination-item"><button id="prevPage" class="pagination-button ${
+		!prevPage ? "disabled" : ""
+	}">Anterior</button></li>`;
+
+	for (let i = 1; i <= totalPages; i++) {
+		pagination.innerHTML += `<li class="pagination-item"
+		}><button class="pagination-button ${currentPage === i ? "active" : ""}" onclick="changePage(${i})">${i}</button></li>`;
+		console.log(currentPage === i);
+	}
+
+	pagination.innerHTML += `<li class="pagination-item "><button id="nextPage" class="pagination-button ${
+		!nextPage ? "disabled" : ""
+	}">Siguiente</button></li>`;
+	const next = document.getElementById("nextPage");
+	const prev = document.getElementById("prevPage");
+	next.addEventListener("click", () => {
+		getAllNotes(nextPage);
+	});
+	prev.addEventListener("click", () => {
+		getAllNotes(prevPage);
+	});
 };
 
 //AGREGAR NOTAS
@@ -51,6 +87,7 @@ addButton.addEventListener("click", (e) => {
 		send = false;
 		window.location.reload();
 	});
+	console.log("Hola");
 
 	formAddNote.addEventListener("submit", async (e) => {
 		e.preventDefault();
@@ -88,6 +125,22 @@ addButton.addEventListener("click", (e) => {
 //MOSTRAR NOTAS
 const containerNotes = document.getElementById("containerNotes");
 const showNotes = (noteArr) => {
+	containerNotes.innerHTML = "";
+	containerNotes.innerHTML += `<form id="formAddNote" class="form-notes display-none">
+						<div class="container-inputs">
+							<span>Nota nueva:</span>
+							<input type="text" id="addNote" class="title-note" placeholder="Titulo..." name="title" />
+							<textarea name="description" placeholder="Descripcion..."></textarea>
+						</div>
+						<div class="container-buttons">
+							<button id="sendBtn" class="material-symbols-outlined notes-button" type="submit">
+								<span class="material-symbols-outlined">
+									<span class="material-symbols-outlined"> task_alt </span>
+								</span>
+							</button>
+							<button id="closeBtn" class="material-symbols-outlined notes-button">close</button>
+						</div>
+					</form>`;
 	noteArr.forEach(({ n_id, title, description, date_of_creation }) => {
 		containerNotes.innerHTML += `
 			<form id="formNote-${n_id}" class="form-notes">

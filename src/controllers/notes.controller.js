@@ -19,9 +19,35 @@ const createNote = async (req, res) => {
 //OBTENER TODAS LAS NOTAS CON U_ID
 const getAllNotes = async (req, res) => {
 	try {
-		const notes = await NotesModel.getAllNotes(req.u_id);
+		let { limit = 9, page = 1 } = req.query;
+		limit = +limit;
+		page = +page;
+
+		if (page < 1 || limit < 1 || limit > 100) return res.status(400).json({ ok: false, error: "Queries invalidas" });
+
+		const notes = await NotesModel.getAllNotes(req.u_id, limit, page);
 		if (notes.length < 1) return res.status(404).json({ ok: false, msg: "No existen notas para mostrar" });
-		res.status(200).json({ ok: true, msg: notes, username: req.name });
+
+		const count = await NotesModel.countNotes(req.u_id);
+		const baseUrl = `${req.protocol}://${req.get("host")}/api/notes`;
+		const baseUrlWithQueries = `${baseUrl}?limit${limit}`;
+		const totalPages = Math.ceil(count / limit);
+		const nextPage = page + 1 > totalPages ? null : `${baseUrlWithQueries}&page=${page + 1}`;
+		const prevPage = page - 1 < 1 ? null : `${baseUrlWithQueries}&page=${page - 1}`;
+
+		res.status(200).json({
+			ok: true,
+			msg: notes,
+			username: req.name,
+			pagination: {
+				count,
+				totalPages,
+				nextPage,
+				prevPage,
+				limit,
+				currentPage: page,
+			},
+		});
 	} catch (error) {
 		res.status(400).json({ ok: false });
 	}
